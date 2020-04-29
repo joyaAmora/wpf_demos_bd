@@ -29,6 +29,26 @@ namespace wpf_demo_phonebook
             return cm;
         }
 
+        public static ObservableCollection<ContactModel> GetContactsByName(string _name)
+        {
+            ContactModel cm = null;
+            ObservableCollection<ContactModel> searchedContacts = new ObservableCollection<ContactModel>();
+            DataTable dt = new DataTable();
+
+            dt = dao.SearchByName(_name);
+
+            if (dt != null)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    cm = RowToContactModel(row);
+                    searchedContacts.Add(cm);
+                }
+            }
+
+            return searchedContacts;
+        }
+
         public static ContactModel GetContactByID(int _id)
         {
             ContactModel cm = null;

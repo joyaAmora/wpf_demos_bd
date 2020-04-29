@@ -51,33 +51,27 @@ namespace wpf_demo_phonebook.ViewModels
             SelectedContact = PhoneBookBusiness.GetContactByID(1);
 
             Contacts = PhoneBookBusiness.getAllContacts();
+            
         }
 
         private void SearchContact(object parameter)
         {
             string input = parameter as string;
             int output;
-            string searchMethod;
+
             if (!Int32.TryParse(input, out output))
             {
-                searchMethod = "name";
+                Contacts = PhoneBookBusiness.GetContactsByName(input);
+                if (Contacts.Count > 0)
+                {
+                    SelectedContact = Contacts[0];
+                }
             } else
             {
-                searchMethod = "id";
+                SelectedContact = PhoneBookBusiness.GetContactByID(output);
             }
 
-            switch (searchMethod)
-            {
-                case "id":
-                    SelectedContact = PhoneBookBusiness.GetContactByID(output);
-                    break;
-                case "name":
-                    SelectedContact = PhoneBookBusiness.GetContactByName(input);
-                    break;
-                default:
-                    MessageBox.Show("Unkonwn search method");
-                    break;
-            }
+            
         }
     }
 }
