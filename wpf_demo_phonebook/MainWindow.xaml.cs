@@ -28,34 +28,33 @@ namespace wpf_demo_phonebook
         {
             InitializeComponent();
 
-            var connString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+            //var connString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
 
-            using (SqlConnection conn = new SqlConnection(connString))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand("Select * from Contacts", conn))
-                {
-                    try
-                    {
-                        conn.Open();
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.lvContact.ItemsSource = dataTable.DefaultView;
+            //using (SqlConnection conn = new SqlConnection(connString))
+            //{
+            //    using (SqlCommand sqlCommand = new SqlCommand("Select * from Contacts", conn))
+            //    {
+            //        try
+            //        {
+            //            conn.Open();
+            //            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            //            {
+            //                DataTable dataTable = new DataTable();
+            //                dataTable.Load(dataReader);
 
-                        }
-                    }
-                    catch (Exception)
-                    {
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
 
-                        MessageBox.Show("An error occured!");
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
-                }
-            }
+            //            MessageBox.Show("An error occured!");
+            //        }
+            //        finally
+            //        {
+            //            conn.Close();
+            //        }
+            //    }
+            //}
         }
     }
 }

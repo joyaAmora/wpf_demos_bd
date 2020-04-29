@@ -72,7 +72,9 @@ namespace wpf_demo_phonebook
                 OnPropertyChanged();
             }
         }
-        public string Info => $"{LastName}, {FirstName}";
+        public string Info {
+            get => $"{LastName}, {FirstName}";
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
