@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using wpf_demo_phonebook.ViewModels.Commands;
 
@@ -6,6 +7,19 @@ namespace wpf_demo_phonebook.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
+        private ObservableCollection<ContactModel> contacts = new ObservableCollection<ContactModel>();
+
+        public ObservableCollection<ContactModel> Contacts
+        {
+            get => contacts;
+            private set
+            {
+                contacts = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private ContactModel selectedContact;
 
         public ContactModel SelectedContact
@@ -30,10 +44,13 @@ namespace wpf_demo_phonebook.ViewModels
 
         public RelayCommand SearchContactCommand { get; set; }
 
+
         public MainViewModel()
         {
             SearchContactCommand = new RelayCommand(SearchContact);
             SelectedContact = PhoneBookBusiness.GetContactByID(1);
+
+            Contacts = PhoneBookBusiness.getAllContacts();
         }
 
         private void SearchContact(object parameter)

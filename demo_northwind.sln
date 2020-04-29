@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "demo_02_connection_commands
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Models", "App.Models\App.Models.csproj", "{EF0F767E-9FB0-42E0-9499-497AB86C0C0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf_demo_phonebook", "wpf_demo_phonebook\wpf_demo_phonebook.csproj", "{2BD00356-2854-4BE3-AD05-8FDBFE8EA7C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wpf_demo_phonebook", "wpf_demo_phonebook\wpf_demo_phonebook.csproj", "{2BD00356-2854-4BE3-AD05-8FDBFE8EA7C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -53,7 +53,13 @@ namespace wpf_demo_phonebook
             {
                 command.Connection = open();
                 command.CommandText = _query;
-                command.Parameters.AddRange(parameters);
+
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                //command.Parameters.AddRange(parameters);
                 command.ExecuteNonQuery();
                 DataAdapter.SelectCommand = command;
                 DataAdapter.Fill(ds);
