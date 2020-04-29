@@ -35,7 +35,8 @@
             <Separator/>
             <TextBlock Margin="10" Text="Recherche : "/>
             <TextBox x:Name="txtCriteria" HorizontalAlignment="Right" Width="150"/>
-            <Button Margin="5" Content="Recherche"/>
+            <Button Margin="5" Content="Recherche" Command="{Binding SearchContactCommand}" 
+                    CommandParameter="{Binding ElementName=txtCriteria,Path=Text}"/>
         </ToolBar>
         <Grid>
         <Grid.ColumnDefinitions>
@@ -84,9 +85,6 @@
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Celluaire : "/>
                 <TextBlock Grid.Row="7" Grid.Column="0" Text="Identifiant : "/>
 
-                <Button  Grid.Row="0" Grid.Column="1" Content="Recherche" 
-                    Command="{Binding SearchContactCommand}" 
-                    CommandParameter="{Binding ElementName=txtCriteria,Path=Text}" />
                 <TextBox Grid.Row="1" Grid.Column="1" Width="300" HorizontalAlignment="Right" Text="{Binding SelectedContact.FirstName}"/>
                 <TextBox Grid.Row="2" Grid.Column="1" Width="300" HorizontalAlignment="Right" Text="{Binding SelectedContact.LastName}"/>
                 <TextBox Grid.Row="3" Grid.Column="1" Width="300" HorizontalAlignment="Right" Text="{Binding SelectedContact.Email}"/>
