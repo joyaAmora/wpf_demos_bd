@@ -125,7 +125,8 @@ namespace wpf_demo_phonebook
         {
             int add;
 
-            add = dao.Insert(cm);
+            dao.Insert(cm);
+            add = dao.LastID();
 
             return add;
         }

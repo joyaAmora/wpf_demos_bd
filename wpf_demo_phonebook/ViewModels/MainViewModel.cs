@@ -58,16 +58,16 @@ namespace wpf_demo_phonebook.ViewModels
         public RelayCommand SearchContactCommand { get; set; }
         public RelayCommand SaveContactCommand { get; set; }
         public RelayCommand DeleteContactCommand { get; set; }
-        public RelayCommand InsertContactCommand { get; set; }
+        public RelayCommand CreateContactCommand { get; set; }
 
 
         public MainViewModel()
         {
             VM = this;
             SearchContactCommand = new RelayCommand(SearchContact);
-            SaveContactCommand = new RelayCommand(UpdateContact);
+            SaveContactCommand = new RelayCommand(SaveContact);
             DeleteContactCommand = new RelayCommand(DeleteContact);
-            InsertContactCommand = new RelayCommand(InsertContact);
+            CreateContactCommand = new RelayCommand(CreateContact);
 
             Contacts = PhoneBookBusiness.getAllContacts();
             SelectedContact = Contacts.First<ContactModel>();
@@ -94,14 +94,28 @@ namespace wpf_demo_phonebook.ViewModels
             
         }
 
-        private void UpdateContact(object c)
+        private void SaveContact(object c)
         {
-            int modif = PhoneBookBusiness.UpdateContact(SelectedContact);
+            if (selectedContact.ContactID != 0)
+            {
+                int modif = PhoneBookBusiness.UpdateContact(SelectedContact);
+            }
+            else
+            {
+                int generatedNewId = PhoneBookBusiness.InsertContact(selectedContact);
+                if (generatedNewId > 0)
+                {
+                    SelectedContact.ContactID = generatedNewId;
+                    Contacts.Add(SelectedContact);
+
+                    SelectedContact = Contacts.Last<ContactModel>();
+                }
+            }
         }        
         
         private void DeleteContact(object parameter)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Voulez-vous vraiment supprimer?", "Confirmation", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 int modif = PhoneBookBusiness.DeleteContact(SelectedContact);
@@ -110,7 +124,7 @@ namespace wpf_demo_phonebook.ViewModels
                 
         }
 
-        private void InsertContact(object c)
+        private void CreateContact(object c)
         {
             ContactModel newContact = new ContactModel();
 

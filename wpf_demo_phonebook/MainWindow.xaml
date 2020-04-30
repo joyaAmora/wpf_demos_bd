@@ -16,7 +16,7 @@
                     <MenuItem Header="_Sauvegarder"/>
                     <MenuItem Header="_Fermer"/>
                     <Separator/>
-                    <MenuItem Header="_Nouveau client" Command="{Binding InsertContactCommand}"/>
+                    <MenuItem Header="_Nouveau client" Command="{Binding CreateContactCommand}"/>
                     <Separator/>
                     <MenuItem Header="_Quitter"/>
                 </MenuItem>
@@ -31,7 +31,7 @@
             </Menu>
         </StackPanel>
         <ToolBar DockPanel.Dock="Top">
-            <Button Content="+Contact" Command="{Binding InsertContactCommand}"/>
+            <Button Content="+Contact" Command="{Binding CreateContactCommand}"/>
             <Separator/>
             <TextBlock Margin="10" Text="Recherche : "/>
             <TextBox x:Name="txtCriteria" HorizontalAlignment="Right" Width="150"/>
