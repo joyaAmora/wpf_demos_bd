@@ -56,6 +56,7 @@ namespace wpf_demo_phonebook.ViewModels
 
         private void SearchContact(object parameter)
         {
+            Contacts = PhoneBookBusiness.getAllContacts();
             string input = parameter as string;
             int output;
 
@@ -70,7 +71,6 @@ namespace wpf_demo_phonebook.ViewModels
             {
                 SelectedContact = PhoneBookBusiness.GetContactByID(output);
             }
-
             
         }
     }

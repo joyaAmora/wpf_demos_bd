@@ -59,7 +59,6 @@ namespace wpf_demo_phonebook
                     command.Parameters.AddRange(parameters);
                 }
 
-                //command.Parameters.AddRange(parameters);
                 command.ExecuteNonQuery();
                 DataAdapter.SelectCommand = command;
                 DataAdapter.Fill(ds);

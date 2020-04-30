@@ -29,10 +29,10 @@ namespace wpf_demo_phonebook
 
             SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@firstName", SqlDbType.NVarChar);
-            parameters[0].Value = _name;
+            parameters[0].Value = "%" + _name + "%";
 
             parameters[1] = new SqlParameter("@lastName", SqlDbType.NVarChar);
-            parameters[1].Value = _name;
+            parameters[1].Value = "%" + _name + "%";
 
             return conn.ExecuteSelectQuery(_query, parameters);
         }
