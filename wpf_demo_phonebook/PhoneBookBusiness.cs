@@ -102,5 +102,14 @@ namespace wpf_demo_phonebook
 
             return contacts;
         }
+
+        public static int UpdateContact (ContactModel cm)
+        {
+            int modifs;
+            int _id = cm.ContactID;
+            modifs = dao.Update(cm, _id);
+
+            return modifs;
+        }
     }
 }

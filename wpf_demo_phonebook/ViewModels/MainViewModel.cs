@@ -7,6 +7,16 @@ namespace wpf_demo_phonebook.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
+        private BaseViewModel _vm;
+        public BaseViewModel VM
+        {
+            get { return _vm; }
+            set
+            {
+                _vm = value;
+                OnPropertyChanged();
+            }
+        }
         private ObservableCollection<ContactModel> contacts = new ObservableCollection<ContactModel>();
 
         public ObservableCollection<ContactModel> Contacts
@@ -18,6 +28,8 @@ namespace wpf_demo_phonebook.ViewModels
                 OnPropertyChanged();
             }
         }
+
+
 
 
         private ContactModel selectedContact;
@@ -43,11 +55,14 @@ namespace wpf_demo_phonebook.ViewModels
         }
 
         public RelayCommand SearchContactCommand { get; set; }
+        public RelayCommand SaveContactCommand { get; set; }
 
 
         public MainViewModel()
         {
+            VM = this;
             SearchContactCommand = new RelayCommand(SearchContact);
+            SaveContactCommand = new RelayCommand(UpdateContact);
             SelectedContact = PhoneBookBusiness.GetContactByID(1);
 
             Contacts = PhoneBookBusiness.getAllContacts();
@@ -72,6 +87,11 @@ namespace wpf_demo_phonebook.ViewModels
                 SelectedContact = PhoneBookBusiness.GetContactByID(output);
             }
             
+        }
+
+        private void UpdateContact(object c)
+        {
+            int modif = PhoneBookBusiness.UpdateContact(SelectedContact);
         }
     }
 }
