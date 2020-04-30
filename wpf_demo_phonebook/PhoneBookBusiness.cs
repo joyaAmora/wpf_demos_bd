@@ -120,5 +120,14 @@ namespace wpf_demo_phonebook
 
             return modifs;
         }
+
+        public static int InsertContact(ContactModel cm)
+        {
+            int add;
+
+            add = dao.Insert(cm);
+
+            return add;
+        }
     }
 }

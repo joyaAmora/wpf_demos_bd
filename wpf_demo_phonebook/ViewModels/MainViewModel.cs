@@ -58,6 +58,7 @@ namespace wpf_demo_phonebook.ViewModels
         public RelayCommand SearchContactCommand { get; set; }
         public RelayCommand SaveContactCommand { get; set; }
         public RelayCommand DeleteContactCommand { get; set; }
+        public RelayCommand InsertContactCommand { get; set; }
 
 
         public MainViewModel()
@@ -66,6 +67,7 @@ namespace wpf_demo_phonebook.ViewModels
             SearchContactCommand = new RelayCommand(SearchContact);
             SaveContactCommand = new RelayCommand(UpdateContact);
             DeleteContactCommand = new RelayCommand(DeleteContact);
+            InsertContactCommand = new RelayCommand(InsertContact);
 
             Contacts = PhoneBookBusiness.getAllContacts();
             SelectedContact = Contacts.First<ContactModel>();
@@ -106,6 +108,13 @@ namespace wpf_demo_phonebook.ViewModels
                 Contacts = PhoneBookBusiness.getAllContacts();
             }
                 
+        }
+
+        private void InsertContact(object c)
+        {
+            ContactModel newContact = new ContactModel();
+
+            SelectedContact = newContact;
         }
     }
 }

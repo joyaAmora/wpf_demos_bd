@@ -16,7 +16,7 @@
                     <MenuItem Header="_Sauvegarder"/>
                     <MenuItem Header="_Fermer"/>
                     <Separator/>
-                    <MenuItem Header="_Nouveau client"/>
+                    <MenuItem Header="_Nouveau client" Command="{Binding InsertContactCommand}"/>
                     <Separator/>
                     <MenuItem Header="_Quitter"/>
                 </MenuItem>
@@ -31,7 +31,7 @@
             </Menu>
         </StackPanel>
         <ToolBar DockPanel.Dock="Top">
-            <Button Content="+Contact"/>
+            <Button Content="+Contact" Command="{Binding InsertContactCommand}"/>
             <Separator/>
             <TextBlock Margin="10" Text="Recherche : "/>
             <TextBox x:Name="txtCriteria" HorizontalAlignment="Right" Width="150"/>
@@ -44,22 +44,21 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0">
-            <ListView ItemsSource="{Binding Contacts}"
-                      SelectedItem="{Binding SelectedContact}"
-                      Margin="5">
+            <Grid Grid.Column="0">
+                <ListView ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact}"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"
+                          Margin="5">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Info}"></TextBlock>
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
-            </ListView>
-        </Grid>
+                </ListView>
+
+            </Grid>
 
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>

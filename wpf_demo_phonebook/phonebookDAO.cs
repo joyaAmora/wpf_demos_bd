@@ -94,6 +94,17 @@ namespace wpf_demo_phonebook
             return conn.ExecutUpdateQuery(_query, parameters);
         }
 
+        public int Insert(ContactModel cm)
+        {
+            string _query = $"INSERT INTO [Contacts] (FirstName, LastName, Email, Phone, Mobile)" +
+                            $"OUTPUT INSERTED.ContactID" +
+                            $"VALUES ('{cm.FirstName}','{cm.LastName}','{cm.Email}','{cm.Phone}','{cm.Mobile}',)";
+
+            return conn.ExecutInsertQuery(_query, null);
+        }
+
+
     }
 
+    
 }
