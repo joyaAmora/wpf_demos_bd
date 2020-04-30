@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using wpf_demo_phonebook.ViewModels.Commands;
 
@@ -56,6 +57,7 @@ namespace wpf_demo_phonebook.ViewModels
 
         public RelayCommand SearchContactCommand { get; set; }
         public RelayCommand SaveContactCommand { get; set; }
+        public RelayCommand DeleteContactCommand { get; set; }
 
 
         public MainViewModel()
@@ -63,9 +65,10 @@ namespace wpf_demo_phonebook.ViewModels
             VM = this;
             SearchContactCommand = new RelayCommand(SearchContact);
             SaveContactCommand = new RelayCommand(UpdateContact);
-            SelectedContact = PhoneBookBusiness.GetContactByID(1);
+            DeleteContactCommand = new RelayCommand(DeleteContact);
 
             Contacts = PhoneBookBusiness.getAllContacts();
+            SelectedContact = Contacts.First<ContactModel>();
             
         }
 
@@ -92,6 +95,17 @@ namespace wpf_demo_phonebook.ViewModels
         private void UpdateContact(object c)
         {
             int modif = PhoneBookBusiness.UpdateContact(SelectedContact);
+        }        
+        
+        private void DeleteContact(object parameter)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                int modif = PhoneBookBusiness.DeleteContact(SelectedContact);
+                Contacts = PhoneBookBusiness.getAllContacts();
+            }
+                
         }
     }
 }

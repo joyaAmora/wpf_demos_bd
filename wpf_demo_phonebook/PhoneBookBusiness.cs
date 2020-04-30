@@ -110,6 +110,15 @@ namespace wpf_demo_phonebook
             modifs = dao.Update(cm, _id);
 
             return modifs;
+        }        
+        
+        public static int DeleteContact (ContactModel cm)
+        {
+            int modifs;
+            int _id = cm.ContactID;
+            modifs = dao.Delete(cm, _id);
+
+            return modifs;
         }
     }
 }
